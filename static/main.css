@@ -49,3 +49,12 @@
     color: #4CAF50;
     text-decoration: none;
 }
+
+#wrong-PW {
+    font-family: "Roboto", sans-serif;
+    position: relative;
+    max-width: 360px;
+    margin: 100px auto 100px auto;
+    padding: 45px;
+    text-align: center;
+}

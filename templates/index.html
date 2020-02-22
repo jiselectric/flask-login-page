@@ -17,6 +17,28 @@
     </div>
 
     <script>
+        $("#submit").on("click", function(e){
+            var s_id = $("#id").val();
+            var s_pw = $("#pw").val();
+
+            $.ajax(  {
+                type: "POST",
+                url : "/check",
+                data : {id : s_id, pw : s_pw}
+            }  )
+                .done(function(result){
+                        if(result == "correct"){
+                            window.location.href = "success";
+                        }
+                        else if(result == 'wrongPW'){
+                            alert('Invalid Password!');
+                        }
+                        else {
+                            alert('No Account!');
+                        }
+                });
+            });
     </script>
+
 </body>
 </html>
