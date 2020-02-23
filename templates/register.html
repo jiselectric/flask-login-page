@@ -2,9 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title> Registration </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
+    <div id='sign-in-box'>
+        <h2> Create Account </h2><br>
+        <input type='text' placeholder='ID' name='id' id="id"><br>
+        <div id="warning-id"></div>
+        <input type='password' placeholder='Password' name='pw' id="pw"><br>
+        <input type='password' placeholder='Re-Enter Password' name='check-pw' id='check-pw'><br>
+        <div id="warning-pw"></div>
+        <button id='create'> Create Account </button><br>
+    </div>
 
+    <script>
+        $('#create').on('click', function(e){
+            var create_id = $('#id').val();
+            var create_pw = $('#pw').val();
+            var check_pw = $('#check-pw').val();
+
+            $.ajax(  {
+                type: "POST",
+                url : "/register",
+                data : {id : create_id, pw : create_pw}
+            }  )
+                .done(function(result){
+                        if(result == "correct"){
+                            window.location.href = "success";
+                        }
+                        else if(result == 'wrongPW'){
+                            alert('Invalid Password!');
+                        }
+                        else if(result == 'wrong') {
+                            alert('No Account!');
+                        }
+                        else {
+                            alert('Please Complete the Form!');
+                        }
+                });
+            });
+    </script>
 </body>
+
 </html>

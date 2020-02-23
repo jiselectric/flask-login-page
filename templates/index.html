@@ -13,7 +13,8 @@
         <input type='text' placeholder='ID' name='id' id='id'><br>
         <input type='password' placeholder='Password' name='pw' id='pw'><br>
         <button id='submit'> Sign In </button><br>
-        <p class="message"> Not registered? <a href="#"> Create an account </a></p>
+        <!-- Modal Trigger Link -->
+        <p class="message"> Not registered? <a href='register'> Create an account </a></p>
     </div>
 
     <script>
@@ -33,8 +34,11 @@
                         else if(result == 'wrongPW'){
                             alert('Invalid Password!');
                         }
-                        else {
+                        else if(result == 'wrong') {
                             alert('No Account!');
+                        }
+                        else {
+                            alert('Please Complete the Form!');
                         }
                 });
             });
