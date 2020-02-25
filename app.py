@@ -51,5 +51,19 @@ def regist():
     else:
         return "Account Already Exists"
 
+# Check User
+@app.route('/user')
+def getUsers():
+    return str(users)
+
 # Error Handler
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html')
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    return render_template('404.html')
+
+
 app.run()

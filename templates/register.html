@@ -10,10 +10,9 @@
     <div id='sign-in-box'>
         <h2> Create Account </h2><br>
         <input type='text' placeholder='ID' name='id' id="id"><br>
-        <div id="warning-id"></div>
         <input type='password' placeholder='Password' name='pw' id="pw"><br>
         <input type='password' placeholder='Re-Enter Password' name='check-pw' id='check-pw'><br>
-        <div id="warning-pw"></div>
+        <div id="warning"></div>
         <button id='create'> Create Account </button><br>
     </div>
 
@@ -37,13 +36,16 @@
             var check = $(this).val();
             var pw = $("#pw").val();
             if(pw != check){
-                $("#warning-pw").html("Password Not Match.");
-                $("#warning-pw").css("color", "red");
+                $("#warning").html("Password Not Match.");
+                $("#warning").css("color", "red");
+                $('#pw').on("click", function() {
+                    $('#pw').val('');
+                    $('#check-pw').val('');
+                });
             }
             else{
-                $("#warning-pw").html("Password Matches.");
-                $("#warning-pw").css("color", "blue");
-                $("#warning-pw").show();
+                $("#warning").html("Password Matches.");
+                $("#warning").css("color", "blue");
             }
         });
 
