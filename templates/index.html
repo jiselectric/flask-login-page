@@ -19,29 +19,29 @@
 
     <script>
         $("#submit").on("click", function(e){
-            var s_id = $("#id").val();
-            var s_pw = $("#pw").val();
+            let id = $("#id").val();
+            let pw = $("#pw").val();
 
+            if(id!='' && pw != ''){
             $.ajax(  {
                 type: "POST",
                 url : "/check",
-                data : {id : s_id, pw : s_pw}
+                data : {id : id, pw : pw}
             }  )
                 .done(function(result){
-                        if(result == "correct"){
+                        if(result == "success"){
                             window.location.href = "success";
                         }
-                        else if(result == 'wrongPW'){
-                            alert('Invalid Password!');
-                        }
-                        else if(result == 'wrong') {
-                            alert('No Account!');
-                        }
                         else {
-                            alert('Please Complete the Form!');
+                            alert(result);
                         }
                 });
+                }
+                else {
+                    alert('Fill the Form');
+                 }
             });
+
     </script>
 
 </body>

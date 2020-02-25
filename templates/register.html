@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title> Registration </title>
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
     <div id='sign-in-box'>
@@ -17,31 +18,35 @@
     </div>
 
     <script>
-        $('#create').on('click', function(e){
-            var create_id = $('#id').val();
-            var create_pw = $('#pw').val();
-            var check_pw = $('#check-pw').val();
-
-            $.ajax(  {
-                type: "POST",
-                url : "/register",
-                data : {id : create_id, pw : create_pw}
-            }  )
-                .done(function(result){
-                        if(result == "correct"){
-                            window.location.href = "success";
-                        }
-                        else if(result == 'wrongPW'){
-                            alert('Invalid Password!');
-                        }
-                        else if(result == 'wrong') {
-                            alert('No Account!');
-                        }
-                        else {
-                            alert('Please Complete the Form!');
-                        }
-                });
+        $("#create").on("click", function(e){
+            let id = $("#id").val();
+            let pw = $("#pw").val();
+            $.ajax({
+                url : "/regist",
+                method : "post",
+                data : {
+                    "id" : id,
+                    "pw" : pw
+                }
+            }).done(function(result){
+                alert(result);
             });
+        });
+
+        $("#check-pw").on("keyup", function(e){
+            var check = $(this).val();
+            var pw = $("#pw").val();
+            if(pw != check){
+                $("#warning-pw").html("Password Not Match.");
+                $("#warning-pw").css("color", "red");
+            }
+            else{
+                $("#warning-pw").html("Password Matches.");
+                $("#warning-pw").css("color", "blue");
+                $("#warning-pw").show();
+            }
+        });
+
     </script>
 </body>
 
