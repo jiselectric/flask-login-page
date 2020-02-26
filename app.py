@@ -30,7 +30,8 @@ def check():
 # Login Successful
 @app.route('/success')
 def success():
-    return render_template('success.html')
+    id = request.args.get("id")
+    return render_template('success.html', iid=id)
 
 # Account Register
 @app.route('/register')
@@ -51,7 +52,14 @@ def regist():
     else:
         return "Account Already Exists"
 
-# Check User
+# Logout
+@app.route('/logout')
+def logout():
+    id = request.form.get("id")
+    session.pop('id')
+    return 'logout'
+
+# User List
 @app.route('/user')
 def getUsers():
     return str(users)

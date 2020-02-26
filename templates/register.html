@@ -20,6 +20,9 @@
         $("#create").on("click", function(e){
             let id = $("#id").val();
             let pw = $("#pw").val();
+            let check = $("#check-pw").val()
+
+            if(id!='' && pw != '' && pw == check){
             $.ajax({
                 url : "/regist",
                 method : "post",
@@ -30,11 +33,13 @@
             }).done(function(result){
                 alert(result);
             });
+            }
         });
 
         $("#check-pw").on("keyup", function(e){
             var check = $(this).val();
             var pw = $("#pw").val();
+
             if(pw != check){
                 $("#warning").html("Password Not Match.");
                 $("#warning").css("color", "red");

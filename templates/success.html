@@ -8,13 +8,26 @@
     <title> Sign-In </title>
 </head>
 <body>
-    <div id='sign-in-box'>
+    <div id='sign-in-box' class="success-box">
         <!-- Jinja Template -->
-        <h2> Login Success </h2><br>
+        <h2> WELCOME <span style="color:blue">{{ iid }}</span></h2><br>
+        <button id="logout-btn"> Logout </button>
     </div>
 
     <script>
-
+        $("#logout-btn").on("click", function(e){
+            let id = {{iid}}
+            $.ajax(  {
+                type: "POST",
+                url : "/logout",
+                data : {id : id}
+            }  )
+                .done(function(result){
+                        if(result == 'logout'){
+                            alert('hi');
+                        }
+                });
+            });
     </script>
 
 </body>
